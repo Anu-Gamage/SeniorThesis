@@ -1,2 +1,4 @@
 # Senior Honors Thesis
-# Tensor Methods for Multi-layer Graph Embedding
+
+
+Tensor Methods for Multi-layer Graph Embedding
