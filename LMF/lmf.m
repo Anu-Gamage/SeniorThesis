@@ -22,12 +22,12 @@ function [acc, nmiVal, final_labels] = lmf(data, labels, num_clusters, alphaVal,
     %numIter = 20;
     iter = 0;
 
-    while(fvalP ~= fvalP_old && fvalD ~= fvalD_old)
+    while((fvalP ~= fvalP_old && fvalD ~= fvalD_old) && iter < 1500)
         fvalP_old = fvalP;
         fvalD_old = fvalD;
 
         iter = iter + 1;
-%         disp(iter)
+    %     disp(iter)
 
         % Generate P fixing D
         P = reshape(P, [1,size(P,1)*size(P,2)]);

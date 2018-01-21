@@ -3,12 +3,12 @@
 % 1/14/2017
 clear;clc;close all
 
-n = 100;       % no. of nodes 
+n = 300;       % no. of nodes 
 k = 2;        % no. of clusters
 m = 1;        % no. of layers 
 p = 3;        % SNR parameter (2-3 for strong signal, 1 for weak)
 alpha = 1e-4; % Correction parameter
-density = 0.075; % percentage
+density = 0.050; % percentage
 
 params = 1:10;           % No. of layers
 avgAcc = zeros(1, numel(params));
@@ -33,7 +33,7 @@ for var = 1:numel(params)
 
     % Run LMF
 
-    numRuns = 10;
+    numRuns = 50;
     acc = zeros(1, numRuns);
     nmi = zeros(1, numRuns);
     for i = 1:numRuns
@@ -53,4 +53,4 @@ avgDensity = sum(nodeDensity)/numel(params);
 title(sprintf('Nodes = %d, Clusters = %d, Layers = %d, Avg. Degree = %.2f', n, k, m, avgDensity))
 xlabel('Variable'); ylabel('Accuracy'); ylim([0,100])
 legend('CCR', 'NMI')
-saveas(gcf, sprintf('\figs\n%d_k%d_m%d.jpg', n, k, m))
+saveas(gcf, sprintf('figs/n%d_k%d_m%d_2.jpg', n, k, m))
