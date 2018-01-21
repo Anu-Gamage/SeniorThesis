@@ -8,7 +8,7 @@ k = 2;        % no. of clusters
 m = 1;        % no. of layers 
 p = 3;        % SNR parameter (2-3 for strong signal, 1 for weak)
 alpha = 1e-4; % Correction parameter
-density = 0.050; % percentage
+density = 0.0075; % percentage  (0.0075 for 1%)
 
 params = 1:10;           % No. of layers
 avgAcc = zeros(1, numel(params));
@@ -53,4 +53,4 @@ avgDensity = sum(nodeDensity)/numel(params);
 title(sprintf('Nodes = %d, Clusters = %d, Layers = %d, Avg. Degree = %.2f', n, k, m, avgDensity))
 xlabel('Variable'); ylabel('Accuracy'); ylim([0,100])
 legend('CCR', 'NMI')
-saveas(gcf, sprintf('figs/n%d_k%d_m%d_2.jpg', n, k, m))
+saveas(gcf, sprintf('figs/n%d_k%d_m%d_3.jpg', n, k, m))
