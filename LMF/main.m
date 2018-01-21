@@ -8,7 +8,7 @@ k = 2;        % no. of clusters
 m = 1;        % no. of layers 
 p = 3;        % SNR parameter (2-3 for strong signal, 1 for weak)
 alpha = 1e-4; % Correction parameter
-density = 0.075; % percentage
+density = 0.1; % percentage
 
 params = 1:20;           % No. of layers
 avgAcc = zeros(1, numel(params));
