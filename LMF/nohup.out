@@ -1,0 +1,26 @@
+/usr/local/MATLAB2/R2016b/bin/glnxa64/MATLAB: /usr/local/MATLAB2/R2016b/bin/glnxa64/libcrypto.so.1.0.0: no version information available (required by /usr/local/MATLAB2/R2016b/bin/glnxa64/libssl.so.1.0.0)
+/usr/local/MATLAB2/R2016b/bin/glnxa64/MATLAB: /usr/local/MATLAB2/R2016b/bin/glnxa64/libcrypto.so.1.0.0: no version information available (required by /usr/local/MATLAB2/R2016b/bin/glnxa64/libssl.so.1.0.0)
+/usr/local/MATLAB2/R2016b/bin/glnxa64/MATLAB: /usr/local/MATLAB2/R2016b/bin/glnxa64/libcrypto.so.1.0.0: no version information available (required by /usr/local/MATLAB2/R2016b/bin/glnxa64/libssl.so.1.0.0)
+/usr/local/MATLAB2/R2016b/bin/glnxa64/MATLAB: /usr/local/MATLAB2/R2016b/bin/glnxa64/libcrypto.so.1.0.0: no version information available (required by /usr/local/MATLAB2/R2016b/bin/glnxa64/libssl.so.1.0.0)
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2016 The MathWorks, Inc.
+                   R2016b (9.1.0.441655) 64-bit (glnxa64)
+                             September 7, 2016
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Variable 1 processing:
+Avg. Node Degree: 0.86
+Avg. CCR: 17.93
+Avg. NMI: 0.03
+
+Variable 2 processing:
+Avg. Node Degree: 0.68
+Avg. CCR: 17.88
+Avg. NMI: 0.03
+
+Variable 3 processing:
+Avg. Node Degree: 0.80
