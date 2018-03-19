@@ -1,0 +1,7 @@
+default:
+	latex thesis-official
+	latex thesis-official
+	bibtex thesis-official
+	latex thesis-official
+	latex thesis-official
+	dvipdfm thesis-official
