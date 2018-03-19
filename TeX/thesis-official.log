@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.12.26)  19 MAR 2018 15:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.12.26)  19 MAR 2018 16:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -369,9 +369,9 @@ Package: tabulary 2014/06/11 v0.10 tabulary package (DPC)
 LaTeX Warning: Unused global option(s):
     [pdflatex].
 
-(./thesis-official.aux (./acknowledgement.aux) (./abstract.aux)
-(./introduction.aux) (./chapter2/chapter2file.aux) (./chapter3/chapter3file.aux
-) (./chapter4/chapter4file.aux))
+(./thesis-official.aux (./abstract.aux) (./introduction.aux)
+(./chapter2/chapter2file.aux) (./chapter3/chapter3file.aux)
+(./chapter4/chapter4file.aux) (./chapter5/chapter5file.aux))
 \openout1 = `thesis-official.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 193.
@@ -450,49 +450,42 @@ e
  [1
 
 {c:/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-\openout2 = `acknowledgement.aux'.
+\openout2 = `abstract.aux'.
 
- (./acknowledgement.tex
-LaTeX Font Info:    Try loading font information for U+msa on input line 13.
+ (./abstract.tex
+[2
+
+
+]) (./thesis-official.toc
+LaTeX Font Info:    Try loading font information for U+msa on input line 5.
 
 (c:/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 13.
+LaTeX Font Info:    Try loading font information for U+msb on input line 5.
 
 (c:/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [2
-
-
-])
-\openout2 = `abstract.aux'.
-
- (./abstract.tex
-[3
-
-
-
-]) (./thesis-official.toc)
+))
 \tf@toc=\write4
 \openout4 = `thesis-official.toc'.
+
+ [3
+
+
+]
+(./thesis-official.lot)
+\tf@lot=\write5
+\openout5 = `thesis-official.lot'.
 
  [4
 
 
-] (./thesis-official.lot)
-\tf@lot=\write5
-\openout5 = `thesis-official.lot'.
-
- [5
-
-
-]
-(./thesis-official.lof)
+] (./thesis-official.lof)
 \tf@lof=\write6
 \openout6 = `thesis-official.lof'.
 
- [6
+ [5
 
 
 ]
@@ -500,20 +493,15 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
  (./introduction.tex
 Chapter 1.
-<cs-focus.pdf, id=28, 614.295pt x 794.97pt>
-File: cs-focus.pdf Graphic file (type pdf)
- <use cs-focus.pdf>
-Package pdftex.def Info: cs-focus.pdf used on input line 20.
-(pdftex.def)             Requested size: 251.30954pt x 325.215pt.
 ) [1
 
 
-] [2 <./cs-focus.pdf>]
+]
 \openout2 = `chapter2/chapter2file.aux'.
 
  (./chapter2/chapter2file.tex
 Chapter 2.
-) [3
+) [2
 
 
 
@@ -522,7 +510,7 @@ Chapter 2.
 
  (./chapter3/chapter3file.tex
 Chapter 3.
-) [4
+) [3
 
 
 
@@ -531,6 +519,15 @@ Chapter 3.
 
  (./chapter4/chapter4file.tex
 Chapter 4.
+) [4
+
+
+
+]
+\openout2 = `chapter5/chapter5file.aux'.
+
+ (./chapter5/chapter5file.tex
+Chapter 5.
 ) [5
 
 
@@ -538,30 +535,28 @@ Chapter 4.
 ] (./thesis-official.bbl) [6
 
 
-] (./thesis-official.aux (./acknowledgement.aux) (./abstract.aux) (./introducti
-on.aux) (./chapter2/chapter2file.aux)
-(./chapter3/chapter3file.aux) (./chapter4/chapter4file.aux)) ) 
+] (./thesis-official.aux (./abstract.aux)
+(./introduction.aux) (./chapter2/chapter2file.aux) (./chapter3/chapter3file.aux
+) (./chapter4/chapter4file.aux) (./chapter5/chapter5file.aux)) ) 
 Here is how much of TeX's memory you used:
- 6160 strings out of 493013
- 83863 string characters out of 6136992
- 165060 words of memory out of 5000000
- 9522 multiletter control sequences out of 15000+600000
- 12666 words of font info for 46 fonts, out of 8000000 for 9000
+ 6148 strings out of 493013
+ 83729 string characters out of 6136992
+ 163048 words of memory out of 5000000
+ 9512 multiletter control sequences out of 15000+600000
+ 11711 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,8n,53p,810b,338s stack positions out of 5000i,500n,10000p,200000b,80000s
-<c:/texlive/2016/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2016/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2016/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-12.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb><c
-:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive
-/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on thesis-official.pdf (12 pages, 1284347 bytes).
+ 40i,5n,53p,810b,219s stack positions out of 5000i,500n,10000p,200000b,80000s
+<c:/texlive/201
+6/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2016/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2016/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr12.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmti10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
+i12.pfb>
+Output written on thesis-official.pdf (11 pages, 91047 bytes).
 PDF statistics:
- 92 PDF objects out of 1000 (max. 8388607)
- 65 compressed objects within 1 object stream
+ 64 PDF objects out of 1000 (max. 8388607)
+ 44 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
