@@ -1,0 +1,237 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Updated by Lenore Cowen and Mengfei Cao, version 4.0, December 2015
+%%%%
+%%%% We believe this template now meets the style requirements for a PHD 
+%%% dissertation at Tufts University, but you still need to check this with
+%%% the Tufts University graduate handbook, currently located at 
+%%% http://asegrad.tufts.edu/sites/default/files/GraduateStudentHandbook.pdf
+%%% starting at page 25 to make sure your final document is in compliance.
+%%%%% 
+%%% Updated by Anoop Kumar, version 3.0, February 2010
+%%% 
+%%% File: utthesis2.doc, version 2.0jab, February 2002
+%%%
+%%% Based on: utthesis.doc, version 2.0, January 1995
+%%% =============================================
+%%% Copyright (c) 1995 by Dinesh Das.  All rights reserved.
+%%% This file is free and can be modified or distributed as long as
+%%% you meet the following conditions:
+%%%
+%%% (1) This copyright notice is kept intact on all modified copies.
+%%% (2) If you modify this file, you MUST NOT use the original file name.
+%%%
+%%% This file contains a template that can be used with the package
+%%% utthesis.sty and LaTeX2e to produce a thesis that meets the requirements
+%%% of the Graduate School of The University of Texas at Austin.
+%%%
+%%% All of the commands defined by utthesis.sty have default values (see
+%%% the file utthesis.sty for these values).  Thus, theoretically, you
+%%% don't need to define values for any of them; you can run this file
+%%% through LaTeX2e and produce an acceptable thesis, without any text.
+%%% However, you probably want to set at least some of the macros (like
+%%% \thesisauthor).  In that case, replace "..." with appropriate values,
+%%% and uncomment the line (by removing the leading %'s).
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,pdflatex]{report}         %% LaTeX2e document.
+\usepackage {thesis}              %% Preamble.
+\usepackage {url}
+\usepackage {graphicx}
+\usepackage {subfigure}
+\usepackage {fancyvrb}
+\usepackage {algorithm}
+\usepackage {algorithmic}
+\usepackage[usenames]{color}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{ctable}
+\usepackage{tabulary} 
+
+%\usepackage{fullpage, setspace}
+
+% \mastersthesis                     %% Uncomment one of these; if you don't
+%\phdthesis                         %% use either, the default is \phdthesis.
+
+%\thesisdraft                       %% Uncomment this if you want a draft
+                                     %% version; this will print a timestamp
+                                     %% on each page of your thesis.
+
+% \leftchapter                       %% Uncomment one of these if you want
+% \centerchapter                     %% left-justified, centered or
+% \rightchapter                      %% right-justified chapter headings.
+                                     %% Chapter headings includes the
+                                     %% Contents, Acknowledgments, Lists
+                                     %% of Tables and Figures and the Vita.
+                                     %% The default is \centerchapter.
+
+% \singlespace                       %% Uncomment one of these if you want
+%\oneandhalfspace                   %% single-spacing, space-and-a-half
+%\doublespace                       %% or double-spacing; the default is
+                                     %% \oneandhalfspace, which is the
+                                     %% minimum spacing accepted by the
+                                     %% Graduate School.
+
+\renewcommand{\thesisauthor}{Anuththari Gamage}    %% Your name.
+
+\renewcommand{\thesismonth}{May}   %% Your month of graduation.
+
+\renewcommand{\thesisyear}{2018}      %% Your year of graduation.
+
+% \renewcommand{\thesistitle}{System Design, Testing, Deployment, and
+% Management in a Component-based and Autonomic Way\\
+% Offloading System Management Tasks to Distributed Appliances}
+
+%\renewcommand{\thesistitle}{Augmented Training  Methods for Hidden Markov Model%s for the Detection of Remote Protein Homologs}
+
+\renewcommand{\thesistitle}{Tensor Methods for Multi-layer Graph Embedding}
+
+                                     %% The title of your thesis; use
+                                     %% mixed-case.
+
+\renewcommand{\thesisauthorpreviousdegrees}{}
+                                     %% Your previous degrees, abbreviated;
+                                     %% separate multiple degrees by commas.
+
+\renewcommand{\thesissupervisor}{Prof. Shuchin Aeron}
+                                     %% Your thesis supervisor; use mixed-case
+                                     %% and don't use any titles or degrees.
+
+% \renewcommand{\thesiscosupervisor}{}
+                                     %% Your PhD. thesis co-supervisor; if any.
+                                     %% Use mixed case and don't use any titles
+                                     %% or degrees. Uncomment if you
+                                     %% have a co-supervisor.
+                                     %% (Ignored for Master's)
+
+\renewcommand{\thesiscommitteemembera}{Prof. Misha Kilmer}
+\renewcommand{\thesiscommitteememberb}{Prof. Xiaozhe Hu}
+%\renewcommand{\thesiscommitteememberc}{Prof. Other Tufts}
+%\renewcommand{\thesiscommitteememberd}{Prof. Mo Willems}
+% \renewcommand{\thesiscommitteemembere}{}
+% \renewcommand{\thesiscommitteememberf}{}
+% \renewcommand{\thesiscommitteememberg}{}
+% \renewcommand{\thesiscommitteememberh}{}
+% \renewcommand{\thesiscommitteememberi}{}
+                                     %% Define your other committee members here;
+                                     %% use mixed case and don't use any titles
+                                     %% or degrees.  Uncomment as many
+                                     %% as neccessary. (Ignored for Master's)
+
+\renewcommand{\thesisauthoraddress}{
+Tufts University\\
+161 College Ave.
+Medford, MA 02155}
+                                     %% Your permanent address; use "\\" for
+                                     %% linebreaks.
+
+\renewcommand{\thesisdedication}{{\em To everyone who helped me get to grad school, helped me in grad school, or simply managed to put up with me while I was in graduate school. And to the people who finally let me leave.}}
+                                     %% Your dedication, if you have one; use
+                                     %% "\\" for linebreaks.
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{proof}[1][Proof]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+\newcommand{\toEdit}[1]{\textcolor{red}{{\em #1}}}
+\newcommand{\comment}[1]{\textcolor{blue}{\em{\sc{#1}}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% The following commands are all optional, but useful if your requirements
+%%% are different from the default values in utthesis.sty.  To use them,
+%%% simply uncomment (remove the leading %) the line(s).
+
+% \renewcommand{\thesiscommitteesize}{5}
+                                     %% Uncomment this only if your thesis
+                                     %% committee does NOT have 5 members
+                                     %% for \phdthesis or 2 for \mastersthesis.
+                                     %% Replace the "..." with the correct
+                                     %% number of members.
+
+ \renewcommand{\thesisdegree}{Bachelor of Science}  %% Uncomment this only if your thesis
+                                     %% degree is NOT "DOCTOR OF PHILOSOPHY"
+                                     %% for \phdthesis or "MASTER OF ARTS"
+                                     %% for \mastersthesis.  Provide the
+                                     %% correct FULL OFFICIAL name of
+                                     %% the degree.
+
+ \renewcommand{\thesisdegreeabbreviation}{B.S.}
+                                     %% Use this if you also use the above
+                                     %% command; provide the OFFICIAL
+                                     %% abbreviation of your thesis degree.
+
+ \renewcommand{\thesistype}{Senior Honors Thesis}    %% Use this ONLY if your thesis type
+                                     %% is NOT "Dissertation" for \phdthesis
+                                     %% or "Thesis" for \mastersthesis.
+                                     %% Provide the OFFICIAL type of the
+                                     %% thesis; use mixed-case.
+
+% \renewcommand{\thesistypist}{...}  %% Use this to specify the name of
+                                     %% the thesis typist if it is anything
+                                     %% other than "the author".
+
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%\thesiscopyrightpage                 %% Generate the copyright page.
+
+%\thesiscertificationpage             %% Generate the PhD. certification page.
+
+\thesistitlepage                     %% Generate the title page.
+
+%\thesissignaturepage                %% Generate the Master's signature page.
+
+%\thesisdedicationpage                %% Generate the dedication page.
+
+\include{acknowledgement}  %%% Goto acknowledgement.tex for content
+
+\include{abstract}   %%% Goto abstract.tex for content
+
+
+\tableofcontents                   %% Generate table of contents.
+\listoftables                      %% Uncomment this to generate list
+                                   %% of tables.
+\listoffigures                     %% Uncomment this to generate list
+                                   %% of figures.
+\include{introduction}             
+\include{chapter2/chapter2file}   
+\include{chapter3/chapter3file}         
+\include{chapter4/chapter4file}                
+                  
+
+%================================ END of chapters =============================
+
+\addcontentsline {toc}{chapter}{Bibliography}
+                                     %% Force Bibliography to appear in contents
+
+%\begin{thebibliography}{..}          %% Start your bibliography here; you can
+%\bibitem{...} ...                    %% also use the \bibliography command
+%\end{thebibliography}                %% to generate your bibliography.
+
+\bibliographystyle{alpha}
+\bibliography{thesis}
+
+%\begin{thesisauthorvita}             %% Write your vita here; it can be
+%...                                  %% anything in LaTeX2e par-mode.
+%\end{thesisauthorvita}               %%
+
+\end{document}                       %% Done.
