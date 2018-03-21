@@ -1,1 +1,4 @@
-Working copy of C-RSP, cleaned up and sparsified from before
+Sparse version of C-RSP
+
+Anuththari Gamage
+3/21/2018
