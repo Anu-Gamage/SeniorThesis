@@ -34,13 +34,21 @@ function [acc_arr, nmi_arr, final_labels] = CRSP(A, C, labels, n, k, m, b)
     Z = inv(speye(n) - W);
     S = (Z*(C_joint.*W)*Z)./Z;
     C_bar = S - ones(n,1)*diag(S)';
-    dRSP = (C_bar + C_bar')./2;
-    dRSP(isnan(dRSP)) = 1e6;                 % Flagging inf
+    dRSP = (C_bar + C_bar')./2;   
+    infFlag = 1e12;
+    dRSP(isnan(dRSP)) = infFlag;                 % Flagging inf
     
     % Spectral Clustering
-    aff = 1./(eye(n) + dRSP);                % Affinity Matrix
-    L = diag(n*ones(n,1)) - aff;
-    [V,D] = eig(L);
+    %aff = 1./(eye(n) + dRSP);                % Affinity Matrix
+   
+    aff = 1./(eye(n) + dRSP) - eye(n);     
+    D = diag(sum(aff,2)) ;
+    L = (D^(-1/2))*aff*(D^(-1/2));          % Normalized Laplacian
+%     aff2 = exp(-dRSP) - eye(n);
+%     D2 = diag(sum(aff2,2)) ;
+%     L2 = (D2^(-1/2))*aff2*(D2^(-1/2)); 
+
+    [V,~] = eig(L);
     vec = V(:,1:k);
 
     % Clustering using k-Means and Linear Sum Assignment
@@ -51,12 +59,11 @@ function [acc_arr, nmi_arr, final_labels] = CRSP(A, C, labels, n, k, m, b)
     new_labels = munkres(-C);
     if ~isequal(new_labels, 1:length(new_labels))
        for i = 1:length(new_labels)
-           final_labels(est_labels == i) = new_labels(i);
+           final_labels(est_labels == new_labels(i)) = i;
        end
     else
         final_labels = est_labels;
     end
-
     % Accuracy
     acc_arr = 100*sum(labels == final_labels)/n;
     nmi_arr = nmi(labels, final_labels);
