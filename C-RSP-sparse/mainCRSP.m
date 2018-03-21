@@ -3,15 +3,15 @@
 % 3/20/2018
 clear;clc;close all
 
-n = 100;                        % no. of nodes 
+n = 50;                        % no. of nodes 
 k = 2;                          % no. of clusters
-m_array = [1,2,3];                  % no. of layers
+m_array = [2];                  % no. of layers
 b = 0.02;                       % Tuning parameter for RSP
 c = [2.0, 3.0, 4.0, 5.0, 6.0, 8.0, 10.0, 12.0,15.0, 20.0];               % Varying node degree
 lambda = 0.9;
 do_plot = 0;                     % To plot data matrices
 do_result_plot = 1;              % To plot results
-num_runs = 15;
+num_runs = 2;
 ccr_array = zeros(num_runs, numel(c), numel(m_array));
 nmi_array = zeros(num_runs, numel(c), numel(m_array));
 
@@ -56,8 +56,9 @@ if do_result_plot
         std_nmi = std(nmi_array(:,:,i));
         figure;yyaxis left; errorbar(c, avg_ccr, std_ccr); ylabel('CCR'); ylim([ 0,100])
         hold on;yyaxis right; errorbar(c, avg_nmi, std_nmi); ylabel('NMI'); ylim([0,1])
-        title(sprintf('CRSP: Nodes = %d, Clusters = %d, Layers = %d', n, k,m_array(i)))
+        title(sprintf('CRSP: Nodes = %d, Clusters = %d, Layers = %d, Runs=%d',n, k,m_array(i), num_runs))
         xlabel('c'); 
         legend('CCR', 'NMI','Location','SouthEast')
  end
+ saveas(gcf, [pwd '/figs/' sprintf('n%d_k%d_m%d_r%d.png', n,k,m,num_runs)])
 end
