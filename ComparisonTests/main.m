@@ -3,7 +3,7 @@
 % 3/21/2018
 clear;clc;close all
 
-n = 50;                        % no. of nodes 
+n = 500;                        % no. of nodes 
 k = 2;                          % no. of clusters
 m_array = [1,2,3];                % no. of layers
 b = 0.02;                       % Tuning parameter for CRSP
@@ -12,7 +12,7 @@ lambda = 0.9;                   % For sbm-gen
 lambda_scml = 0.5;              % regularization parameter for SC-ML
 do_plot = 0;                    % To plot data matrices
 do_result_plot = 1;             % To plot results
-num_runs = 2;                  % Number of runs > 1
+num_runs = 15;                  % Number of runs > 1
 
 num_compar = [1,2];                 % index of algorithms used for comparison: 1-C-RSP, 2-SC-ML
 alg_names = [string('CRSP'), string('SCML')];
