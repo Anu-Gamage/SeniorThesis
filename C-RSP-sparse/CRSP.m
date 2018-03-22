@@ -12,7 +12,7 @@ function [acc_arr, nmi_arr, final_labels] = CRSP(A, C, labels, n, k, m, b)
 % acc_arr - accuracy 
 % nmi_arr - normalized mutual information
 % final_labels - estimated labels from RSP
-% Anuththari Gamage, 3/21/2018
+% Anuththari Gamage, 3/22/2018
 
     P_ref = cell(1,m);                  % Reference transition probability
     for i = 1:m
@@ -22,7 +22,7 @@ function [acc_arr, nmi_arr, final_labels] = CRSP(A, C, labels, n, k, m, b)
     end
        
     % Construct common W
-    C_joint = matrix_mult(C);                  % Combined cost matrix   
+    C_joint = combine_C(C);                  % Combined cost matrix   
     P_joint = combine_P(P_ref);                % Combines probability matrix
     P_joint = stochastize(P_joint);
     W = P_joint.*exp(-b*C_joint);              % Combined weights
@@ -65,6 +65,18 @@ function [acc_arr, nmi_arr, final_labels] = CRSP(A, C, labels, n, k, m, b)
     acc_arr = 100*sum(labels == final_labels)/n;
     nmi_arr = nmi(labels, final_labels);
 end
+
+function new_C = combine_C(C)
+    m = size(C,2); 
+    new_C = C{1};
+    nz_C = C{1}~=0;         % Tracks count of non-zero costs
+    for layers = 2:m
+        new_C = new_C + C{layers};
+        nz_C = nz_C + (C{layers}~=0);
+    end
+    new_C = new_C./(nz_C + (nz_C==0));
+end
+
 
 function new_P = combine_P(P)
    m = size(P,2);              
