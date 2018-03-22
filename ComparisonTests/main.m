@@ -4,11 +4,11 @@
 clear;clc;close all
 
 n = 500;                        % no. of nodes 
-k = 3;                          % no. of clusters
+k = 2;                          % no. of clusters
 m_array = [1,2,3];                % no. of layers
 b = 0.02;                       % Tuning parameter for CRSP
 c = [2.0, 3.0, 4.0, 5.0, 6.0, 8.0, 10.0, 12.0,15.0, 20.0];               % Varying node degree
-lambda = 0.7;                   % For sbm-gen
+lambda = 0.9;                   % For sbm-gen
 lambda_scml = 0.5;              % regularization parameter for SC-ML
 do_plot = 0;                    % To plot data matrices
 do_result_plot = 1;             % To plot results
@@ -93,6 +93,6 @@ if do_result_plot
         for idx = 2:numel(num_compar)
             title_string = strcat(title_string, string('_'),alg_names(num_compar(idx)));
         end
-        saveas(gcf, [pwd '/figs/varying_lambda/' sprintf('%s_n%d_k%d_m%d_r%d_lambda%.1f.png',title_string,n,k,i,num_runs,lambda)])
+        saveas(gcf, [pwd '/figs/varying_k/' sprintf('%s_n%d_k%d_m%d_r%d_lambda%.1f.png',title_string,n,k,i,num_runs,lambda)])
      end
 end
