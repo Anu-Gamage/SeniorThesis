@@ -3,7 +3,7 @@
 % 3/21/2018
 clear;clc;close all
 
-n = 100;                        % no. of nodes 
+n = 50;                        % no. of nodes 
 k = 2;                          % no. of clusters
 m_array = [1,2,3];                % no. of layers
 b = 0.02;                       % Tuning parameter for CRSP
@@ -12,10 +12,10 @@ lambda = 0.9;                   % For sbm-gen
 lambda_scml = 0.5;              % regularization parameter for SC-ML
 do_plot = 0;                    % To plot data matrices
 do_result_plot = 1;             % To plot results
-num_runs = 5;                  % Number of runs > 1
+num_runs = 2;                  % Number of runs > 1
 
 num_compar = [1,2];                 % index of algorithms used for comparison: 1-C-RSP, 2-SC-ML
-alg_names = ["CRSP", "SCML"];
+alg_names = [string('CRSP'), string('SCML')];
 ccr_array = zeros(num_runs, numel(c), numel(m_array), numel(num_compar));
 nmi_array = zeros(num_runs, numel(c), numel(m_array), numel(num_compar));
 
@@ -74,19 +74,25 @@ if do_result_plot
             avg_nmi = mean(nmi_array(:,:,i, alg));
             std_ccr = std(ccr_array(:,:,i, alg));
             std_nmi = std(nmi_array(:,:,i, alg));
-            yyaxis left; errorbar(c, avg_ccr, std_ccr, '-', 'color', x(alg,:), 'DisplayName', strcat(alg_names(num_compar(alg)), "-CCR")); 
+            yyaxis left; errorbar(c, avg_ccr, std_ccr, '-','color',x(alg,:),'DisplayName', sprintf('%s-CCR',alg_names(num_compar(alg)))); 
             ylabel('CCR'); ylim([ 50,100])
-            hold on;yyaxis right; errorbar(c, avg_nmi, std_nmi, '--', 'color', x(alg,:),'DisplayName',strcat(alg_names(num_compar(alg)), "-NMI")); 
+            hold on;yyaxis right; errorbar(c, avg_nmi, std_nmi, '--', 'color',x(alg,:),'DisplayName',sprintf('%s-NMI',alg_names(num_compar(alg)))); 
             ylabel('NMI'); ylim([0,1])
             hold on
          end
         
         title_string = alg_names(num_compar(1));
         for idx = 2:numel(num_compar)
-            title_string = strcat(title_string, " vs. ", alg_names(num_compar(idx)));
+            title_string = strcat(title_string, string(' vs. '), alg_names(num_compar(idx)));
         end
         title(sprintf('%s: Nodes = %d, Clusters = %d, Layers = %d, Runs = %d',title_string, n, k,m_array(i), num_runs))
         xlabel('c'); 
         legend('Location','SouthEast')  
+
+        title_string = alg_names(num_compar(1));
+        for idx = 2:numel(num_compar)
+            title_string = strcat(title_string, string('_'),alg_names(num_compar(idx)));
+        end
+        saveas(gcf, [pwd '/figs/' sprintf('%s_n%d_k%d_m%d_r%d.png',title_string,n,k,i,num_runs)])
      end
 end
