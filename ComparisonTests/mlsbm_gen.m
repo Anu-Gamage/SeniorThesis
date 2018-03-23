@@ -18,7 +18,7 @@ function [A, labels] = mlsbm_gen(n,k,m,cin,lambda)
         seed = randi(1000);
         %[G,labels] = sbm_gen(n,k,cin,cout,seed);
         %perc = [0.3,0.7];
-        perc = [0.1, 0.5, 0.4];
+        perc = [0.2, 0.3, 0.4, 0.1];
         [G,labels] = unbalanced_sbm_gen(n,numel(perc),cin,cout,seed, perc);
         % Check for isolated nodes and fix
         isol = find(sum(G, 2) == 0);
