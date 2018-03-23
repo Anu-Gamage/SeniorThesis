@@ -93,6 +93,7 @@ if do_result_plot
         for idx = 2:numel(num_compar)
             title_string = strcat(title_string, string('_'),alg_names(num_compar(idx)));
         end
-        saveas(gcf, [pwd '/figs/unbalanced_clusters/' sprintf('%s_n%d_k%d_m%d_r%d_lambda%.1f_0.3_0.7.png',title_string,n,k,i,num_runs,lambda)])
+        saveas(gcf, [pwd '/figs/unbalanced_clusters/'
+        sprintf('%s_n%d_k%d_m%d_r%d_lambda%.1f_0.3_0.4_0.3.png',title_string,n,k,i,num_runs,lambda)])
      end
 end
