@@ -4,7 +4,7 @@
 clear;clc;close all
 
 n = 500;                        % no. of nodes 
-k = 2;                          % no. of clusters
+k = 3;                          % no. of clusters
 m_array = [1,2,3];                % no. of layers
 b = 0.02;                       % Tuning parameter for CRSP
 c = [2.0, 3.0, 4.0, 5.0, 6.0, 8.0, 10.0, 12.0,15.0, 20.0];               % Varying node degree
@@ -93,6 +93,6 @@ if do_result_plot
         for idx = 2:numel(num_compar)
             title_string = strcat(title_string, string('_'),alg_names(num_compar(idx)));
         end
-        saveas(gcf, [pwd '/figs/unbalanced_clusters/' sprintf('%s_n%d_k%d_m%d_r%d_lambda%.1f_0.3_0.7.png',title_string,n,k,i,num_runs,lambda)])
+        saveas(gcf, [pwd '/figs/unbalanced_clusters/' sprintf('%s_n%d_k%d_m%d_r%d_lambda%.1f_0.1_0.5_0.4.png',title_string,n,k,i,num_runs,lambda)])
      end
 end
