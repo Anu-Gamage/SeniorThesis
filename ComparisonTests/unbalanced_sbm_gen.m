@@ -5,6 +5,7 @@ function [A,conf_true] = sbm_gen(N,q,cin,cout,seed, perc)
 % seed initializes the random number generator.
 %
 % Modified to generate unbalanced clusters
+% perc - percentage of N nodes contained in each cluster e.g. [0.3 0.7]
 % Anuththari Gamage 3/22/2018
 
 rng(seed);
