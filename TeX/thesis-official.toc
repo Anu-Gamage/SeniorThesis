@@ -1,0 +1,55 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Abstract}{ii}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{List of Tables}{v}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{List of Figures}{vi}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Chapter{} \numberline {1}Introduction}{1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.1}Graph Embedding }{1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.1.1}Factorization Methods}{1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.1.2}Random Walk Methods}{1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.1.3}Deep Learning}{1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.2}Multi-layer Graphs}{1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.3}Multi-layer Graph Embedding}{1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Chapter{} \numberline {2}Review of Related Literature}{2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Multilayer Graph Embedding}{2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.1}Tensor Factorization methods}{2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.2}Spectral Methods}{2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.3}Other methods}{2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}Pros and Cons of these approaches}{2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Chapter{} \numberline {3}Methodology}{3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Randomized Shortest Paths}{3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.1}Mathematical Preliminaries}{3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.2}Randomized Shortest Paths}{4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.3}Randomized Shortest Path Dissimiliarity Measure}{5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.4}Efficient Computation of the RSP Dissimilarity}{6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Common Randomized Shortest Paths (C-RSP)}{6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.1}C-RSP Dissimiliarity Measure}{8}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Chapter{} \numberline {4}Evaluation and Findings}{10}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Chapter{} \numberline {5}Conclusion}{11}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliography}{12}

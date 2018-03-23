@@ -1,0 +1,171 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.8 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\sortlist[entry]{nty/global/}
+  \entry{Kivimaki2014}{article}{}
+    \name{author}{3}{}{%
+      {{hash=KI}{%
+         family={Kivim{\"{a}}ki},
+         familyi={K\bibinitperiod},
+         given={Ilkka},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Shimbo},
+         familyi={S\bibinitperiod},
+         given={Masashi},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Saerens},
+         familyi={S\bibinitperiod},
+         given={Marco},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Elsevier B.V.}%
+    }
+    \keyw{Clustering,Commute time and resistance distance,Free energy,Graph
+  node distances,Randomized shortest paths,Shortest path distance}
+    \strng{namehash}{KISMSM1}
+    \strng{fullhash}{KISMSM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{abstract}{%
+    There have lately been several suggestions for parametrized distances on a
+  graph that generalize the shortest path distance and the commute time or
+  resistance distance. The need for developing such distances has risen from
+  the observation that the above-mentioned common distances in many situations
+  fail to take into account the global structure of the graph. In this article,
+  we develop the theory of one family of graph node distances, known as the
+  randomized shortest path dissimilarity, which has its foundation in
+  statistical physics. We show that the randomized shortest path dissimilarity
+  can be easily computed in closed form for all pairs of nodes of a graph.
+  Moreover, we come up with a new definition of a distance measure that we call
+  the free energy distance. The free energy distance can be seen as an upgrade
+  of the randomized shortest path dissimilarity as it defines a metric, in
+  addition to which it satisfies the graph-geodetic property. The derivation
+  and computation of the free energy distance are also straightforward. We then
+  make a comparison between a set of generalized distances that interpolate
+  between the shortest path distance and the commute time, or resistance
+  distance. This comparison focuses on the applicability of the distances in
+  graph node clustering and classification. The comparison, in general, shows
+  that the parametrized distances perform well in the tasks. In particular, we
+  see that the results obtained with the free energy distance are among the
+  best in all the experiments. {\textcopyright} 2013 Elsevier B.V. All rights
+  reserved.%
+    }
+    \verb{doi}
+    \verb 10.1016/j.physa.2013.09.016
+    \endverb
+    \verb{eprint}
+    \verb 1212.1666
+    \endverb
+    \field{issn}{03784371}
+    \field{pages}{600\bibrangedash 616}
+    \field{title}{{Developments in the theory of randomized shortest paths with
+  a comparison of graph node distances}}
+    \verb{url}
+    \verb http://dx.doi.org/10.1016/j.physa.2013.09.016
+    \endverb
+    \field{volume}{393}
+    \verb{file}
+    \verb :C$\backslash$:/Users/Anu/Desktop/Papers/Graph Embedding/1-s2.0-S0378
+    \verb 437113008479-main.pdf:pdf
+    \endverb
+    \field{journaltitle}{Physica A: Statistical Mechanics and its Applications}
+    \field{eprinttype}{arXiv}
+    \field{year}{2014}
+  \endentry
+
+  \entry{Yen2008}{article}{}
+    \name{author}{4}{}{%
+      {{hash=YL}{%
+         family={Yen},
+         familyi={Y\bibinitperiod},
+         given={Luh},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Saerens},
+         familyi={S\bibinitperiod},
+         given={Marco},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=MA}{%
+         family={Mantrach},
+         familyi={M\bibinitperiod},
+         given={Amin},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Shimbo},
+         familyi={S\bibinitperiod},
+         given={Masashi},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{YL+1}
+    \strng{fullhash}{YLSMMASM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Y}
+    \field{sortinithash}{Y}
+    \field{abstract}{%
+    This work introduces a new family of link-based dissimilarity mea- sures
+  between nodes of a weighted directed graph. This measure, called the
+  randomized shortest-path (RSP) dissimilarity, depends on a parameter $\theta$
+  and has the interesting property of reducing, on one end, to the standard
+  shortest-path distance when $\theta$ is large and, on the other end, to the
+  commute-time (or resistance) distance when $\theta$ is small (near zero).
+  Intuitively, it corresponds to the expected cost incurred by a random walker
+  in order to reach a destination node from a starting node while maintaining a
+  constant entropy (related to $\theta$) spread in the graph. The parameter
+  $\theta$ is therefore bi- asing gradually the simple random walk on the graph
+  towards the shortest-path policy. By adopting a statistical physics approach
+  and computing a sum over all the possible paths (discrete path integral), it
+  is shown that the RSP dissimilarity from every node to a partic- ular node of
+  interest can be computed efficiently by solving two linear systems of n
+  equations, where n is the number of nodes. On the other hand, the
+  dissimilarity between every couple of nodes is obtained by inverting an n × n
+  matrix. The proposed measure can be used for various graph mining tasks such
+  as computing be- tweenness centrality, finding dense communities, etc, as
+  shown in the experimental section.%
+    }
+    \verb{doi}
+    \verb 10.1145/1401890.1401984
+    \endverb
+    \field{isbn}{9781605581934}
+    \field{pages}{785}
+    \field{title}{{A family of dissimilarity measures between nodes
+  generalizing both the shortest-path and the commute-time distances}}
+    \verb{url}
+    \verb http://dl.acm.org/citation.cfm?doid=1401890.1401984
+    \endverb
+    \verb{file}
+    \verb :C$\backslash$:/Users/Anu/Desktop/Papers/10.1.1.569.8474.pdf:pdf
+    \endverb
+    \field{journaltitle}{Proceeding of the 14th ACM SIGKDD international
+  conference on Knowledge discovery and data mining - KDD 08}
+    \field{year}{2008}
+  \endentry
+\endsortlist
+\endinput

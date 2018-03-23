@@ -1,0 +1,181 @@
+\chapter{Methodology} 
+
+\label{chapter:chapter3}
+
+\section{Randomized Shortest Paths}
+
+\subsection{Mathematical Preliminaries}
+
+Suppose we are given a weighted, directed, graph $G = \{V,E\}$ where $V = 1, \ldots, n$ defines the set of vertices or nodes, and $E = \{(i,j)\,|\, i \rightarrow j \}$ defines edges between nodes. For this graph, we can compute a transition probability matrix $\mathrm{P^{ref}} = D^{-1}A$. Here, $D$ is the degree matrix containing the degree of each node on the corresponding diagonal entry and $A$ is the adjacency matrix of the graph. Thus, a random walk on the graph will follow a path determined by these transition probabilities.
+
+Consider a particular path on this graph starting at a source node $s$ and a destination node $t$, denoted by $p_{s\rightarrow t}$. Using $\mathrm{P^{ref}}$, we can compute the probability of this path being taken, $Pr\{p_{s\rightarrow t}\}$. If the path taken is $s\rightarrow v_1 \rightarrow v_2 \rightarrow \ldots \rightarrow v_m \rightarrow t$, then  $Pr\{p_{s\rightarrow t}\} = \mathrm{P^{ref}_{sv_1}}\mathrm{P^{ref}_{v_1v_2}}\ldots\mathrm{P^{ref}_{v_mt}}$. So, the probability of a path of length $m$, $p_{s\rightarrow t}$  consisting of edges $e_1, e_2, \ldots e_m$ is given by  $Pr\{p_{s\rightarrow t}\} = \prod\limits_{i=1}^{m} Pr\{ e_i\}$.
+
+Since each edge has an associated \emph{cost} determined by the weight on the edge, we can also compute the total cost for a given path $p_{s\rightarrow t}$, denoted by $C_{s\rightarrow t}$. Suppose the costs of each edge $e_i$ is given by $c_{e_i}$. This is commonly computed as the reciprocal of the weight on that edge \cite{Kivimaki2014}. Then, the total cost of a path $p_{s\rightarrow t}$ consisting of the edges $e_1, e_2, \ldots e_m$  is given by $C_{s\rightarrow t} = \sum\limits_{i=1}^m c_{e_i}$. If we consider only \emph{absorbing} paths, this cost will be finite. An absorbing path is a path $p_{s\rightarrow t}$ such that the destination node $t$ has no outgoing edges except to itself, so a random walk on the path will necessarily terminate.
+
+For notational convenience, we will denote an absorbing path from source node $s$ to destination node $t$ as $\mathcal{P}$, with the probability of the path under the reference probability distribution $\mathrm{P^{ref}}$ denoted by $\mathrm{P^{ref}}(\mathcal{P})$ and the cost of traversing the path denoted by $C(\mathcal{P})$. Suppose the set of all such absorbing paths is $\mathcal{P}_{st}$. Then, the \emph{expected cost} of a random walk from a source node $s$ to a destination node $t$ is given by $\sum\limits_{\mathcal{P} \in \mathcal{P}_{st}} \mathrm{P^{ref}}(\mathcal{P})C(\mathcal{P})$.
+
+
+\subsection{Randomized Shortest Paths}
+
+The Randomized Shortest Path (RSP) is defined as the path between two nodes with the minimum expected cost. In order to compute this path, a new probability distribution $\mathrm{P}(\mathcal{P})$ is derived under the following constrained optimization:
+
+  \begin{equation}
+    \mathrm{P}(\mathcal{P})=\left\{
+                \begin{array}{ll}
+                  \text{minimize} \sum\limits_{\mathcal{P} \in \mathcal{P}_{st}} \mathrm{P}(\mathcal{P})C(\mathcal{P}) \\
+                  \text{subject to } \sum\limits_{\mathcal{P} \in \mathcal{P}_{st}} \mathrm{P}(\mathcal{P}) \ln \frac{\mathrm{P}(\mathcal{P}) } { \mathrm{P^{ref}}(\mathcal{P})} = J_0\\
+
+                \end{array}
+              \right.
+\end{equation}
+
+Thus, the new probability distribution is derived by minimizing the expected cost for all possible paths, with the condition that the derived distribution and the reference distribution have a fixed relative entropy $J_0$ quantified by the K\"ullback-Leilber divergence between the two distributions. When the parameter $J_0$ is set to 0, we obtain the original reference probability distribution $\mathrm{P^{ref}}$. The value of this parameter is determined by a user defined parameter, $\beta$, in the actual algorithm.
+
+To obtain a closed-from expression for the RSP probability distribution, we compute the Lagrange function of the above constrained optimization problem:
+
+\begin{equation}
+\mathcal{L} = \sum\limits_{\mathcal{P} \in \mathcal{P}_{st}} \mathrm{P}(\mathcal{P})C(\mathcal{P})  + \lambda \Bigg\lbrack\sum\limits_{\mathcal{P} \in \mathcal{P}_{st}} \mathrm{P}(\mathcal{P}) \ln \frac{\mathrm{P}(\mathcal{P}) } { \mathrm{P^{ref}}(\mathcal{P})} - J_0 \Bigg\rbrack + \mu\Bigg\lbrack \sum\limits_{\mathcal{P} \in \mathcal{P}_{st}} \mathrm{P}(\mathcal{P}) - 1 \Bigg\rbrack
+\end{equation}
+
+For one path $\mathcal{P} \in \mathcal{P}_{st}$, we can solve this as follows:
+\[
+\mathcal{L} = \mathrm{P}(\mathcal{P})C(\mathcal{P})  + \lambda \Bigg\lbrack \mathrm{P}(\mathcal{P}) \ln \frac{\mathrm{P}(\mathcal{P}) } { \mathrm{P^{ref}}(\mathcal{P})} - J_0 \Bigg\rbrack + \mu\Bigg\lbrack \mathrm{P}(\mathcal{P}) - 1 \Bigg\rbrack
+\]
+\[
+\frac{\partial \mathcal{L}}{\partial \mathrm{P}} = C(\mathcal{P}) + \lambda \Bigg\lbrack  \ln \frac{\mathrm{P}(\mathcal{P}) }{ \mathrm{P^{ref}}(\mathcal{P})} + 1\Bigg\rbrack  + \mu= 0
+\]
+\[
+\mathrm{P}(\mathcal{P}) = \mathrm{P^{ref}}(\mathcal{P}) e^{-\{\frac{1}{\lambda} (C(\mathcal{P}) + \mu) +1 \}} = \mathrm{P^{ref}}(\mathcal{P}) e^{-\beta C(\mathcal{P})}
+\]
+
+We can convert this expression into a probability distribution over all paths by normalizing by the sum of probabilities:
+\begin{equation}
+\mathrm{P}(\mathcal{P}) = \frac{\mathrm{P^{ref}}(\mathcal{P}) e^{-\beta C(\mathcal{P})}}{\sum\limits_{\mathcal{P} \in \mathcal{P}_{st}}\mathrm{P^{ref}}(\mathcal{P}) e^{-\beta C(\mathcal{P})}} 
+\end{equation}
+
+\subsection{Randomized Shortest Path Dissimiliarity Measure}
+
+Using the probability distribution for Randomized Shorted Paths derived above, we can define the \emph{dissimiliarity} between two nodes in the following manner. Suppose the expected cost of traversing the randomized shortest path between source node $s$ and destination node $t$ is given by $\overline{C(\mathcal{P}_{st})} = \sum\limits_{\mathcal{P} \in \mathcal{P}_{st}} \mathrm{P}(\mathcal{P})C(\mathcal{P})$. Note that we are using the RSP probability distribution $\mathrm{P}$ instead of the reference probability distribution $\mathrm{P^{ref}}$ here to obtain the minimum expected cost. Then, the \emph{symmetric RSP dissimilarity} between the two nodes $s$ and $t$ is as follows:
+\[
+\Delta^{\mathrm{RSP}}_{st} =\frac{\overline{C(\mathcal{P}_{st})} + \overline{C(\mathcal{P}_{ts})}}{2}
+\]
+The RSP dissimilarity can be thought of as a measure of the distance between two nodes as well, since the expected cost of traversing the randomized shortest path between the nodes increases as the number of edges between them increase, thus driving the RSP dissimilarity to increase. We use this interpretation of $\Delta^{\mathrm{RSP}}_{st}$ to test the efficacy of RSP in graph clustering.
+
+\subsection{Efficient Computation of the RSP Dissimilarity}
+
+Following the derivation of the RSP dissimilarity by Yen et al.\cite{Yen2008}, an efficient closed-form expression for its computation was derived by Kivim\"aki et al.\cite{Kivimaki2014}, which we describe in Algorithm \ref{alg:rsp}. This computation is in done entirely through matrix operations, which lends itself nicely to input graphs in the form of adjacency matrices. The output of the algorithm is the symmetric matrix $\Delta^{\mathrm{RSP}} \in \mathbb{R}^{n\times n}$, in which each entry $\Delta^{\mathrm{RSP}}_{ij}$ gives the RSP dissimilarity between the nodes $i$ and $j$.  
+
+\begin{algorithm}
+    \caption{RSP Dissimilarity}
+    \label{alg:rsp}
+
+    \begin{algorithmic}
+	\REQUIRE $\mathrm{P^{ref}} \in \mathbb{R}^{n \times n}$ (reference transition probability matrix), $C\in \mathbb{R}^{n \times n}$ (cost matrix), $\beta$ (optimization parameter)
+	\ENSURE $\Delta^{\mathrm{RSP}}$ (RSP dissimilarity matrix)
+	\STATE $ W = \mathrm{P^{ref}} \circ e^{ -\beta C}$
+	\IF{$\rho(W) \geq 1$}
+	\STATE Stop: will not converge
+          \ENDIF	
+	\STATE $Z = (I - W)^{-1}$   $\qquad (I \in \mathbb{R}^{n \times n}$ is the identity matrix)
+	\STATE $S = (Z\lbrack C \circ W \rbrack Z) \div Z$   $\qquad (\div$ is elementwise division)
+	\STATE $\overline{C} = S - ed_S^T$   $\qquad  (e \in \mathbb{R}^n$ = all ones vector, $d_S\in \mathbb{R}^n$ = diagonal
+ elements of $S$)
+	\STATE $\Delta^{\mathrm{RSP}} = (\overline{C} + \overline{C}^T)/2$
+    \end{algorithmic}
+
+\end{algorithm}
+
+\section{Common Randomized Shortest Paths (C-RSP)}
+
+In this work, we extend the core idea behind RSP for multi-layers graphs. Multi-layer or multi-view graphs contain a number of adjacency matrices, which we call layers, defined on the same set of nodes $V$ with different edge distributions on each layer. Thus, if we represent a graph by its vertex and edge sets as $G = \{V,E\}$, then a multi-layer graph is represented as the tensor $\mathcal{G} = \{V, (E_1, \ldots, E_m)\}$ where each layer is given by $G_i = \{V, E_i\}$.
+
+To extend RSP for multil-layer graphs, we derive a common probability distribution, $\mathrm{Q}$, for \emph{all} layers. This is accomplished by once again minimizing the expected cost for all possible paths on all layers, with the condition that the common distribution and the reference probability distribution of each layer, $\mathrm{P_i^{ref}}$ have the same fixed relative entropy. This constrained optimization is represented as follows for a tensor of $m$ layers, with reference probability distributions $\mathrm{P_1^{ref}}, \ldots , \mathrm{P_m^{ref}}$ and cost matrices $C_1 , \ldots , C_m $:
+\begin{equation}
+    \mathrm{Q}(\mathcal{P})=\left\{
+                \begin{array}{ll}
+                  \text{minimize} \sum\limits_{i=1}^{m} \sum\limits_{\mathcal{P} \in \mathcal{P}_{st}} \mathrm{Q}(\mathcal{P})C_i(\mathcal{P}) \\
+                  \text{subject to } \sum\limits_{i=1}^{m} \sum\limits_{\mathcal{P} \in \mathcal{P}_{st}} \mathrm{Q}(\mathcal{P}) \ln \frac{\mathrm{Q}(\mathcal{P}) } { \mathrm{P_i^{ref}}(\mathcal{P})} = J_0\\
+
+                \end{array}
+              \right.
+\end{equation}
+
+Consider a multi-layer graph $\mathcal{G}$ with $m=2$ layers, $G_1 = \{V, E_1\}$ and $G_2 = \{V,E_2\}$, with the reference transition probability distributions  $\mathrm{P_1^{ref}},  \mathrm{P_2^{ref}}$ and cost matrices $C_1, C_2$ respectively. To derive the common distribution $\mathrm{Q}(\mathcal{P})$, we use the Lagrange function as follows:
+\begin{equation}
+\mathcal{L} = \sum\limits_{i=1}^{m} \sum\limits_{\mathcal{P} \in \mathcal{P}_{st}} \mathrm{Q}(\mathcal{P})C_i(\mathcal{P})  + \lambda \Bigg\lbrack\sum\limits_{\mathcal{P} \in \mathcal{P}_{st}} \mathrm{Q}(\mathcal{P}) \ln \frac{\mathrm{Q}(\mathcal{P}) } { \mathrm{P_i^{ref}}(\mathcal{P})} - J_0 \Bigg\rbrack + \mu\Bigg\lbrack \sum\limits_{\mathcal{P} \in \mathcal{P}_{st}} \mathrm{Q}(\mathcal{P}) - 1 \Bigg\rbrack
+\end{equation}
+
+Considering only one path, we obtain the following:
+\[
+\mathcal{L}   = \mathrm{Q}(\mathcal{P})C_1(\mathcal{P}) \,+ \,\mathrm{Q}(\mathcal{P})C_2(\mathcal{P})   +  \lambda \Bigg\lbrack \mathrm{Q}(\mathcal{P}) \ln \frac{\mathrm{Q}(\mathcal{P}) } { \mathrm{P_1^{ref}}(\mathcal{P})} - J_0 \Bigg\rbrack + \lambda \Bigg\lbrack \mathrm{Q}(\mathcal{P}) \ln \frac{\mathrm{Q}(\mathcal{P}) } { \mathrm{P_2^{ref}}(\mathcal{P})} - J_0 \Bigg\rbrack + \mu\Bigg\lbrack \mathrm{Q}(\mathcal{P}) - 1 \Bigg\rbrack  
+\]
+\[
+\frac{\partial \mathcal{L}}{\partial \mathrm{Q}} = C_1(\mathcal{P}) + C_2(\mathcal{P}) + \lambda \Bigg\lbrack  \ln \frac{\mathrm{Q}(\mathcal{P}) }{ \mathrm{P_1^{ref}}(\mathcal{P})} + \ln \frac{\mathrm{Q}(\mathcal{P}) }{ \mathrm{P_2^{ref}}(\mathcal{P})} + 2\Bigg\rbrack  + \mu= 0
+\]
+\[
+\ln \Bigg\lbrack\frac{Q^2( \mathcal{P})}{  \mathrm{P_1^{ref}}(\mathcal{P})  \mathrm{P_2^{ref}}(\mathcal{P})}\Bigg\rbrack = -\frac{1}{\lambda}\Bigg\lbrack( C_1 + C_2) + 2 \Bigg\rbrack  - \mu
+\]
+\[
+\mathrm{Q}( \mathcal{P}) = \sqrt{\mathrm{P_1^{ref}}(\mathcal{P})\mathrm{P_2^{ref}}(\mathcal{P}) } \Big\lbrack e^{-\frac{1}{2} \{  \frac{1}{\lambda}\lbrack( C_1 + C_2) + 2 \rbrack  - \mu   \}}\Big\rbrack
+\]
+\[
+\mathrm{Q}( \mathcal{P}) = \sqrt{\mathrm{P_1^{ref}}(\mathcal{P})\mathrm{P_2^{ref}}(\mathcal{P}) }\Big\lbrack e^{- \beta (C_1 + C_2) }\Big \rbrack
+\]
+
+Extending this derivation to $m$ layers and normalizing as before, we obtain the following expression for the C-RSP probability distribution for a single path:
+\begin{equation}
+\mathrm{Q}( \mathcal{P}) = \frac{\sqrt[m]{\Pi_{i=1}^{m}\mathrm{P_i^{ref}}(\mathcal{P})}  e^{- \beta \Big(\sum\limits_{i=1}^{m} C_i\Big) }} {\sum\limits_{\mathcal{P} \in \mathcal{P}_{st}}\sqrt[m]{\Pi_{i=1}^{m}\mathrm{P_i^{ref}}(\mathcal{P})}  e^{- \beta \Big(\sum\limits_{i=1}^{m} C_i\Big) }}
+\end{equation}
+
+\subsection{C-RSP Dissimiliarity Measure}
+Using the derived common probablility distribution, $\mathrm{Q}(\mathcal{P})$, we can compute a dissimilarity measure $\Delta^{\mathrm{C-RSP}}$ for multi-layer graphs following an approach similar to that detailed in Section 3.1.4 above. Note that we can use the same algorithm used for computing RSP if we were to have a single reference probability matrix $\mathrm{P^{ref}}$ and a single cost matrix $C$ instead of the tensors associated with a multi-layer graph. Using the expression for $\mathrm{Q}(\mathcal{P})$ derived in Equation 3.6, we can \emph{combine} the individual layers of these tensors to obtain these matrices as detailed below.
+
+Let $\mathbf{P}$ denote the combined reference transition probability matrix and $\mathbf{C}$ denote the combined cost matrix. By comparing Equations 3.3 and 3.6, we obtain,
+\begin{equation}
+\mathbf{P} = \sqrt[m]{\prod\limits_{i=1}^{m}\mathrm{P_i^{ref}}(\mathcal{P})}
+\end{equation}
+\begin{equation}
+\mathbf{C} = \sum\limits_{i=1}^{m} C_i
+\end{equation}
+
+Note that in Equation 3.6, we derive the probability of an individual path and not the entire set of possible paths. Thus, we need to take care to omit instances when the path does not exists given a particular $\mathrm{P_i^{ref}}$, which occurs when an entry in any $\mathrm{P_i^{ref}}$ is zero. Also note that the multiplication in this expression is an \emph{elementwise} multiplication across the layers of the reference probability tensor rather than a matrix multiplication of the layers. Furthermore, the $m^{th}$ root is also taken elementwise.
+
+To account for all these subtleties in the computation of $\mathbf{P}$, we can better represent this matrix in the following manner:
+\begin{equation}
+\mathbf{P}_{ij} = \left\{
+                \begin{array}{ll}
+                 \sqrt[M]{ \prod\limits_{k=1}^{M} (\mathrm{P_k^{ref}})_{ij}  } & \exists (\mathrm{P_k^{ref}})_{ij} \neq 0, \text{ where }M = |\{\mathrm{P_k^{ref}})_{ij} \neq 0  \} | \\
+                 0  & \text{otherwise } 
+                \end{array}
+              \right.
+\end{equation}
+
+This manner of combining the different $\mathrm{P_i^{ref}}$ matrices does not guarantee a row-stochastic matrix, which is necessary for it to be a probability distribution. Thus, the resulting matrix $\mathbf{P}$ must be further manipulated to obtain a row-stochastic matrix. This can be achieved easily by successive division of each row and column of the matrix by their respective row and column sums until convergence.
+
+Using these steps, we obtain a combined reference probability matrix $\mathbf{P}$ and a combined cost matrix $\mathbf{C}$ that can then be used in the original RSP algorithm to obtain the C-RSP dissimilarity measure $\Delta^{\mathrm{C-RSP}}$, as detailed in Algorithm~\ref{alg:crsp} below.
+\begin{algorithm}
+    \caption{C-RSP Dissimilarity}
+    \label{alg:crsp}
+
+    \begin{algorithmic}
+	\REQUIRE $\{\mathrm{P_1^{ref}}, \ldots, \mathrm{P_m^{ref}}  \}\in \mathbb{R}^{n \times n \times m}$  (reference transition probability tensor), $\{C_1, \ldots, C_m \}~\in~\mathbb{R}^{n \times n \times m}$ (cost tensor), $\beta$ (optimization parameter)
+	\ENSURE $\Delta^{\mathrm{RSP}}$ (C-RSP dissimilarity matrix)
+	\STATE $\mathbf{P} =  \{ \mathrm{P_1^{ref}}, \ldots, \mathrm{P_m^{ref}}  \}$ \textbf{combined} as given in Equation 3.9
+	\WHILE {$\mathbf{P}$ not row-stochastic}
+		\STATE Divide each row by the row sum
+		\STATE Divide each column by the column sum
+	\ENDWHILE
+	\STATE $\mathbf{P}$ = stochastize($\mathbf{P}$)
+	\STATE $\mathbf{C} =  \sum\limits_{i=1}^{m} C_i$ 
+	\STATE $ W = \mathrm{P^{ref}} \circ e^{ -\beta C}$
+	\IF{$\rho(W) \geq 1$}
+	\STATE Stop: will not converge
+          \ENDIF	
+	\STATE $Z = (I - W)^{-1}$   $\qquad (I \in \mathbb{R}^{n \times n}$ is the identity matrix)
+	\STATE $S = (Z\lbrack C \circ W \rbrack Z) \div Z$   $\qquad (\div$ is elementwise division)
+	\STATE $\overline{C} = S - ed_S^T$   $\qquad  (e \in \mathbb{R}^n$ = all ones vector, $d_S\in \mathbb{R}^n$ = diagonal
+ elements of $S$)
+	\STATE $\Delta^{\mathrm{C-RSP}} = (\overline{C} + \overline{C}^T)/2$
+    \end{algorithmic}
+
+\end{algorithm}
