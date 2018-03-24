@@ -4,7 +4,7 @@
 clear;clc;close all
 
 n = 500;                        % no. of nodes 
-k = 3;                          % no. of clusters
+k = 4;                          % no. of clusters
 m_array = [1,2,3];                % no. of layers
 b = 0.02;                       % Tuning parameter for CRSP
 c = [2.0, 3.0, 4.0, 5.0, 6.0, 8.0, 10.0, 12.0,15.0, 20.0];               % Varying node degree
