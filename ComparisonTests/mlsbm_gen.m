@@ -16,10 +16,11 @@ function [A, labels] = mlsbm_gen(n,k,m,cin,lambda)
     
     for layers = 1:m
         seed = randi(1000);
-        %[G,labels] = sbm_gen(n,k,cin,cout,seed);
+        [G,labels] = sbm_gen(n,k,cin,cout,seed);
         %perc = [0.3,0.7];
-        perc = [0.2, 0.3, 0.4, 0.1];
-        [G,labels] = unbalanced_sbm_gen(n,numel(perc),cin,cout,seed, perc);
+        % perc = [0.2, 0.3, 0.4, 0.1];
+        % [G,labels] = unbalanced_sbm_gen(n,numel(perc),cin,cout,seed, perc);
+        
         % Check for isolated nodes and fix
         isol = find(sum(G, 2) == 0);
         if ~isempty(isol)
@@ -33,6 +34,6 @@ function [A, labels] = mlsbm_gen(n,k,m,cin,lambda)
 
         A{layers} = G;
     end
-    spy(A{1});
-    saveas(gcf, [pwd '/figs/unbalanced_clusters/' sprintf('k%d.png', k)])
+    %spy(A{1});
+    %saveas(gcf, [pwd '/figs/unbalanced_clusters/' sprintf('k%d.png', k)])
 end
