@@ -18,8 +18,8 @@ num_runs = 2;                  % Number of runs > 1
 
 % Index of algorithms used for comparison: 
 % 1=C-RSP, 2=SC-ML, 3=C-FE, 4=CPSC, 5=CCSC
-num_compar = [1,4,5];                 
-alg_names = ["CRSP", "SCML", "CFE", "CPSC", "CCSC"];
+num_compar = [1,4];                 
+alg_names = [string('CRSP'), string('SCML'), string('CFE'), string('CPSC'),string('CCSC')];
 ccr_array = zeros(num_runs, numel(c), numel(m_array), numel(num_compar));
 nmi_array = zeros(num_runs, numel(c), numel(m_array), numel(num_compar));
 
@@ -97,16 +97,16 @@ if do_result_plot
             avg_nmi = mean(nmi_array(:,:,i, alg));
             std_ccr = std(ccr_array(:,:,i, alg));
             std_nmi = std(nmi_array(:,:,i, alg));
-            yyaxis left; errorbar(c, avg_ccr, std_ccr, '-', 'color', x(alg,:), 'DisplayName', strcat(alg_names(num_compar(alg)), "-CCR")); 
+            yyaxis left; errorbar(c, avg_ccr, std_ccr, '-', 'color', x(alg,:),'DisplayName', sprintf('%s-CCR', alg_names(num_compar(alg)))); 
             ylabel('CCR'); ylim([ 50,100])
-            hold on;yyaxis right; errorbar(c, avg_nmi, std_nmi, '--', 'color', x(alg,:),'DisplayName',strcat(alg_names(num_compar(alg)), "-NMI")); 
+            hold on;yyaxis right; errorbar(c, avg_nmi, std_nmi, '--', 'color', x(alg,:),'DisplayName',sprintf('%s-NMI', alg_names(num_compar(alg)))); 
             ylabel('NMI'); ylim([0,1])
             hold on
          end
         
         title_string = alg_names(num_compar(1));
         for idx = 2:numel(num_compar)
-            title_string = strcat(title_string, " vs. ", alg_names(num_compar(idx)));
+            title_string = strcat(title_string, string(' vs. '), alg_names(num_compar(idx)));
         end
         title(sprintf('%s: Nodes = %d, Clusters = %d, Layers = %d, Runs = %d',title_string, n, k,m_array(i), num_runs))
         xlabel('c'); 
@@ -114,8 +114,8 @@ if do_result_plot
         
         title_string = alg_names(num_compar(1));
         for idx = 2:numel(num_compar)
-            title_string = strcat(title_string, "_", alg_names(num_compar(idx)));
+            title_string = strcat(title_string, string('_'), alg_names(num_compar(idx)));
         end
-        saveas(gcf, [pwd '/figs/' sprintf('%s_n%d_k%d_m%d_r%d.png', title_string,n,k,i,num_runs)])
+       % saveas(gcf, [pwd '/figs/' sprintf('%s_n%d_k%d_m%d_r%d.png', title_string,n,k,i,num_runs)])
      end
 end
