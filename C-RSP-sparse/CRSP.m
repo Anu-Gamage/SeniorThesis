@@ -24,7 +24,6 @@ function [acc_arr, nmi_arr, final_labels] = CRSP(A, C, labels, n, k, m, b)
     % Construct common W
     C_joint = combine_C(C);                  % Combined cost matrix   
     P_joint = combine_P(P_ref);                % Combines probability matrix
-    P_joint = stochastize(P_joint);
     W = P_joint.*exp(-b*C_joint);              % Combined weights
     
     specRadius = eigs(W,1);                    % Convergence check
@@ -89,6 +88,8 @@ function new_P = combine_P(P)
    end
    roots = roots + (roots==0);          % To eliminate 0th roots
    new_P = nthroot(new_P, roots);
+
+   new_P = new_P./(sum(new_P,2));       % Make row-stochastic
 end
 
 function new_P = matrix_mult(P)
@@ -111,18 +112,4 @@ function new_P = matrix_mult(P)
 end
 
 
-function P = stochastize(A)
-    n = size(A,1);
-   while sum(round(sum(A,2))' == ones(1,n)) ~= n
-        %A = A./sum(A,1);
-        %A = A./sum(A,2);
-        for i = 1:n                         % To avoid ./ issues (remove later)
-            A(:,i) = A(:,i)/sum(A(:,i));
-        end
-         for i = 1:n
-            A(i,:) = A(i,:)/sum(A(i,:));
-        end
-   end
-    P = A;
-   %disp(sprintf('RowSums = %d',sum(round(sum(A,2))' == ones(1,n))))
-end
+
