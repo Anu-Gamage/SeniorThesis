@@ -3,7 +3,7 @@
 % 3/24/2018
 clear;clc;close all
 
-n = 50;                        % no. of nodes 
+n = 500;                        % no. of nodes 
 k = 2;                          % no. of clusters
 m_array = [1,2,3];                % no. of layers
 b = 0.02;                       % Tuning parameter for CRSP
@@ -14,12 +14,12 @@ lambda_coreg = 0.01;            % Co-regularization parameter for CPSC/CCSC
 num_iter = 10;                  % no. of iterations for CPSC
 do_plot = 0;                    % To plot data matrices
 do_result_plot = 1;             % To plot results
-num_runs = 2;                  % Number of runs > 1
+num_runs = 15;                  % Number of runs > 1
 
 % Index of algorithms used for comparison: 
-% 1=C-RSP, 2=SC-ML, 3=C-FE, 4=CPSC, 5=CCSC
-num_compar = [1,4];                 
-alg_names = [string('CRSP'), string('SCML'), string('CFE'), string('CPSC'),string('CCSC')];
+% 1=C-RSP, 2=SC-ML, 3=C-FE, 4=CPSC, 5=CCSC, 6=MultiNMF
+num_compar = [1,6];                 
+alg_names = [string('CRSP'), string('SCML'), string('CFE'), string('CPSC'),string('CCSC'), string('MultiNMF')];
 ccr_array = zeros(num_runs, numel(c), numel(m_array), numel(num_compar));
 nmi_array = zeros(num_runs, numel(c), numel(m_array), numel(num_compar));
 
@@ -76,6 +76,29 @@ for runs = 1:num_runs
                     addpath([pwd '/coregularizedSC/']) 
                     [acc(degree), nmi(degree),final_labels] = spectral_centroid_multiview(A,m,k,sigma,repmat(lambda_coreg,1,m), labels, num_iter);          
                     disp('CCSC')
+                    fprintf('CCR: %.2f\n', acc(degree))
+                    fprintf('NMI: %.2f\n\n', nmi(degree))
+                    case 6
+                    addpath([pwd '/MultiNMF/']) 
+                    options = [];
+                    options.maxIter = 75;
+                    options.error = 1e-6;
+                    options.nRepeat = 10;
+                    options.minIter = 30;
+                    options.meanFitRatio = 0.1;
+                    options.rounds = 30;
+                    options.WeightMode='Binary';
+                    options.varWeight = 0;
+                    options.kmeans = 1;
+                    options.Gaplpha=10;        % Change to 100?                      
+                    options.alpha=10;
+                    options.delta = 0.1;
+                    options.beta = 0;
+                    options.gamma = 2;
+                    options.K = k;
+                    options.alphas = ones(1,m);         % Equal weights to each layer
+                    
+                    [acc(degree), nmi(degree)] = GMultiNMF(A, k, A, labels, options);                    
                     fprintf('CCR: %.2f\n', acc(degree))
                     fprintf('NMI: %.2f\n\n', nmi(degree))
                 end

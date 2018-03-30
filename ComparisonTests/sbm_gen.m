@@ -4,7 +4,7 @@ function [A,conf_true] = sbm_gen(N,q,cin,cout,seed)
 % average connectivity cin, extra-community average connectivity cout.
 % seed initializes the random number generator.
 
-rng(seed);
+rng(seed, 'twister');
 if(mod(N,q) ~= 0)
     fprintf('Using N = %d, which is a multiple of q\n',q*floor(N/q));
 end
