@@ -4,7 +4,7 @@
 clear;clc;close all
 
 % Algorithm to run: 1=CRSP 2=CFE 3=SCML 4=CPSC 5=CCSC 6=MultiNMF
-algs = [1,2];
+algs = [1,3];
 alg_names = [string('CRSP'), string('CFE'), string('SCML'), string('CPSC'),string('CCSC'), string('MultiNMF')];
 
 b = 10;                         % RSP parameter b = 8 for 3Sources
