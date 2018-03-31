@@ -4,7 +4,7 @@
 clear;clc;close all
 
 % Algorithm to run: 1=CRSP 2=CFE 3=SCML 4=CPSC 5=CCSC 6=MultiNMF
-algs = [1,2,3];
+algs = [1,2];
 alg_names = [string('CRSP'), string('CFE'), string('SCML'), string('CPSC'),string('CCSC'), string('MultiNMF')];
 
 b = 10;                         % RSP parameter b = 8 for 3Sources
@@ -70,6 +70,7 @@ for runs = 1:num_runs
                 fprintf('NMI: %.2f\n\n', nmi_array(alg_id, layers, runs))
                 case 3
                 disp('SCML')
+                addpath([pwd '/SCML/'])
                 [ccr_array(alg_id, layers, runs), nmi_array(alg_id, layers, runs), final_labels] = SCML(A(1:layers), k, 0.5, labels);
                 fprintf('CCR: %.2f\n', ccr_array(alg_id, layers, runs))
                 fprintf('NMI: %.2f\n\n', nmi_array(alg_id, layers, runs))
