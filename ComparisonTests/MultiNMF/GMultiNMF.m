@@ -15,6 +15,8 @@ function [acc_val, nmi_val] = GMultiNMF(X, K, W, label,options)
 
 %Note that columns are data vectors here
 
+% Modified to get different outputs from function
+% Anuththari Gamage 3/30/2018
 
 viewNum = length(X);
 Rounds = options.rounds;

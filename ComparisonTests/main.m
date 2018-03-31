@@ -1,6 +1,6 @@
 % Main test file for C-RSP vs Everything else
 % Anuththari Gamage
-% 3/24/2018
+% 3/30/2018
 clear;clc;close all
 
 n = 500;                        % no. of nodes 
@@ -18,7 +18,7 @@ num_runs = 15;                  % Number of runs > 1
 
 % Index of algorithms used for comparison: 
 % 1=C-RSP, 2=SC-ML, 3=C-FE, 4=CPSC, 5=CCSC, 6=MultiNMF
-num_compar = [1,6];                 
+num_compar = [1,2,4,6];                 
 alg_names = [string('CRSP'), string('SCML'), string('CFE'), string('CPSC'),string('CCSC'), string('MultiNMF')];
 ccr_array = zeros(num_runs, numel(c), numel(m_array), numel(num_compar));
 nmi_array = zeros(num_runs, numel(c), numel(m_array), numel(num_compar));
@@ -139,6 +139,6 @@ if do_result_plot
         for idx = 2:numel(num_compar)
             title_string = strcat(title_string, string('_'), alg_names(num_compar(idx)));
         end
-       % saveas(gcf, [pwd '/figs/' sprintf('%s_n%d_k%d_m%d_r%d.png', title_string,n,k,i,num_runs)])
+        saveas(gcf, [pwd '/figs/' sprintf('%s_n%d_k%d_m%d_r%d.png', title_string,n,k,i,num_runs)])
      end
 end

@@ -1,5 +1,5 @@
 function [acc_val, nmi_val] = printResult(X, label, K, kmeansFlag)
-	if(~exist('kmeansFlag','var'))
+if(~exist('kmeansFlag','var'))
 		kmeansFlag = 1;
 	end
     for i=1:1
