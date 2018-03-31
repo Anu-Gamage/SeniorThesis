@@ -35,7 +35,7 @@ ac=0;
 while j < 3                   %Modify this loop for managing initializations
                                %Analyse which 'options' give better results
     j = j + 1;
-    workspace
+%    workspace
     Goptions.alpha=options.Gaplpha;
     if j == 1
         

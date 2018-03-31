@@ -14,7 +14,7 @@ lambda_coreg = 0.01;            % Co-regularization parameter for CPSC/CCSC
 num_iter = 10;                  % no. of iterations for CPSC
 do_plot = 0;                    % To plot data matrices
 do_result_plot = 1;             % To plot results
-num_runs = 15;                  % Number of runs > 1
+num_runs = 5;                  % Number of runs > 1
 
 % Index of algorithms used for comparison: 
 % 1=C-RSP, 2=SC-ML, 3=C-FE, 4=CPSC, 5=CCSC, 6=MultiNMF
