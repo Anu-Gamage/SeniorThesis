@@ -4,17 +4,17 @@
 clear;clc;close all
 
 % Algorithm to run: 1=CRSP 2=CFE 3=SCML 4=CPSC 5=CCSC 6=MultiNMF
-algs = [1,3];
+algs = [1,2,3];
 alg_names = [string('CRSP'), string('CFE'), string('SCML'), string('CPSC'),string('CCSC'), string('MultiNMF')];
 
-b = 10;                         % RSP parameter b = 8 for 3Sources
+b = 10;                          % RSP parameter b = 10 for 3Sources
 lambda_coreg = 0.01;             % Co-regularization parameter for CPSC/CCSC
 num_iter = 10;                   % no. of iterations for CPSC
 do_result_plot = 1;              % To plot results
 
 addpath([pwd '/Datasets/3sources'])  
-load('sources_adj.mat')
-load('sources_costs.mat')
+load('sources_adj_threshold30.mat')
+load('sources_costs_threshold30.mat')
 load('sources_labels.mat')
 
 % Data parameters
@@ -26,7 +26,7 @@ k = 6;
 
 % Run paramters
 m_array = 1:m;          % no. of layers to run
-num_runs = 10;           % no. of repetitions
+num_runs = 15;           % no. of repetitions
 ccr_array = zeros(numel(algs),numel(m_array),num_runs);
 nmi_array = zeros(numel(algs),numel(m_array),num_runs);
 
