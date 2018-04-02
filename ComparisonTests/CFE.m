@@ -45,7 +45,7 @@ function [acc_arr, nmi_arr, final_labels] = CFE(A, C, labels, n, k, m, b)
     L = (D^(-1/2))*aff*(D^(-1/2));          % Normalized Laplacian
     [V,E] = eig(L);
     [~,I] = sort(diag(E),'descend');
-    V = V(:, I(1:k)');
+    V = V(:, I(2:k+1)');                    % Changed to take from second largest ei.value onwards
     V = V./sqrt(sum(V.^2,2));
     
     % Clustering using k-Means and Linear Sum Assignment
