@@ -1,3 +1,7 @@
+% Loads data from 3sources and constructs weight matrix by counting the
+% overlap
+% Anuththari Gamage
+
 clear;clc;close all
 
 sources = cell(1,3);
@@ -21,7 +25,7 @@ for i = 1:3
     sources{i} = sortrows(sources{i}(ismember(sources{i}(:,2),overlap),:),2);
 end
 
-thresh = 15;
+thresh = 30;
 n = numel(overlap);
 sources_weights = cell(1,3);
 sources_adjacencies = cell(1,3);
@@ -50,6 +54,6 @@ for i = 1:numel(sources_labels)
     sources_labels(i) = r;
 end
 
-save('sources_adj.mat', 'sources_adjacencies')
-save('sources_costs.mat', 'sources_weights')
+save(sprintf('sources_adj_threshold%d.mat', thresh), 'sources_adjacencies')
+save(sprintf('sources_costs_threshold%d.mat', thresh), 'sources_weights')
 save('sources_labels.mat', 'sources_labels')
