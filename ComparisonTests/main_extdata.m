@@ -7,22 +7,32 @@ clear;clc;close all
 algs = [1,2,3];
 alg_names = [string('CRSP'), string('CFE'), string('SCML'), string('CPSC'),string('CCSC'), string('MultiNMF')];
 
-b = 10;                          % RSP parameter b = 10 for 3Sources
+b = 1e-2;                          % RSP parameter: b = 10 for 3Sources, b=0.1 for multiview twitter
 lambda_coreg = 0.01;             % Co-regularization parameter for CPSC/CCSC
 num_iter = 10;                   % no. of iterations for CPSC
 do_result_plot = 1;              % To plot results
 
-addpath([pwd '/Datasets/3sources'])  
-load('sources_adj_threshold30.mat')
-load('sources_costs_threshold30.mat')
-load('sources_labels.mat')
 
 % Data parameters
+% addpath([pwd '/Datasets/MultiviewTwitter/'])  
+% load('politicsuk_adjacency.mat')
+% load('politicsuk_costs.mat')
+% load('politicsuk_labels.mat')
+% A = politicsuk_adjacency;
+% C = politicsuk_costs;
+% labels = politicsuk_labels';
+% A = [A(1:2)];
+% C = [C(1:2)];
+addpath([pwd '/Datasets/3sources/'])  
+load('sources_adj_density10.mat')
+load('sources_costs_density10.mat')
+load('sources_labels.mat')
 A = sources_adjacencies;               
 C = sources_weights;
 labels = sources_labels;
+
 m = numel(A);
-k = 6;
+k = max(labels);
 
 % Run paramters
 m_array = 1:m;          % no. of layers to run
@@ -48,8 +58,10 @@ labels(isol) = [];
 n = numel(labels);
 
 for i = 1:m                     % Convert C to cost matrix from weight matrix
-    C{i} = 1./C{i};
-    C{i}(C{i} == inf) = 1e12;
+%     C{i} = 1./C{i};
+%     C{i}(C{i} == inf) = 1e12;
+    N = max(max(C{i}));
+    C{i} = exp(-C{i}./N);
 end
 
 % Run comparison
