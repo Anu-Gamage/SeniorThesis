@@ -1,4 +1,2 @@
 # Senior Honors Thesis
-
-
-Tensor Methods for Multi-layer Graph Embedding
+Robust and Scalable Multi-Layer Graph Embedding using Randomized Shortest Paths
